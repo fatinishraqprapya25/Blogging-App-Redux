@@ -1,74 +1,50 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Blog } from '../types';
 
 interface BlogCardProps {
   blog: Blog;
-  horizontal?: boolean;
+  compact?: boolean;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ blog, horizontal = false }) => {
-  if (horizontal) {
-    return (
-      <Link to={`/blog/${blog.id}`} className="group flex flex-col md:flex-row gap-6 bg-white p-4 rounded-2xl border border-gray-100 hover:border-indigo-100 hover:shadow-xl hover:shadow-indigo-50/20 transition-all">
-        <div className="md:w-1/3 h-48 md:h-auto overflow-hidden rounded-xl">
+export const BlogCard: React.FC<BlogCardProps> = ({ blog, compact = false }) => {
+  return (
+    <div className="group bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+      {!compact && (
+        <div className="aspect-video relative overflow-hidden">
           <img 
-            src={blog.imageUrl} 
+            src={blog.image} 
             alt={blog.title} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
           />
-        </div>
-        <div className="md:w-2/3 flex flex-col justify-center">
-          <div className="flex items-center gap-3 mb-2">
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-600 uppercase tracking-wide">
+          <div className="absolute top-3 left-3">
+            <span className="px-2.5 py-1 text-xs font-semibold bg-white/90 backdrop-blur rounded-full text-indigo-700 uppercase tracking-wider shadow-sm">
               {blog.category}
             </span>
-            <span className="text-xs text-gray-400 font-medium">{blog.date}</span>
-          </div>
-          <h3 className="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors mb-3">
-            {blog.title}
-          </h3>
-          <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed mb-4">
-            {blog.excerpt}
-          </p>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-gray-700">By {blog.authorName}</span>
           </div>
         </div>
-      </Link>
-    );
-  }
-
-  return (
-    <Link to={`/blog/${blog.id}`} className="group flex flex-col bg-white rounded-2xl border border-gray-100 hover:border-indigo-100 hover:shadow-xl hover:shadow-indigo-50/20 transition-all overflow-hidden h-full">
-      <div className="h-56 overflow-hidden">
-        <img 
-          src={blog.imageUrl} 
-          alt={blog.title} 
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-        />
-      </div>
-      <div className="p-6 flex flex-col flex-grow">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-600 uppercase tracking-wide">
-            {blog.category}
-          </span>
-          <span className="text-xs text-gray-400 font-medium">{blog.date}</span>
+      )}
+      <div className="p-5">
+        <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
+          <span>{blog.publishDate}</span>
+          <span className="w-1 h-1 bg-slate-300 rounded-full"></span>
+          <span>{blog.readTime} read</span>
         </div>
-        <h3 className="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition-colors mb-3 leading-snug">
+        <h3 className="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 mb-2">
           {blog.title}
         </h3>
-        <p className="text-gray-500 text-sm line-clamp-3 leading-relaxed mb-6 flex-grow">
+        <p className="text-slate-600 text-sm line-clamp-3 mb-4">
           {blog.excerpt}
         </p>
-        <div className="flex items-center gap-2 pt-4 border-t border-gray-50">
-          <div className="w-6 h-6 rounded-full bg-gray-200"></div>
-          <span className="text-xs font-semibold text-gray-700">{blog.authorName}</span>
+        <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+          <img 
+            src={`https://ui-avatars.com/api/?name=${encodeURIComponent(blog.author)}&background=random`} 
+            alt={blog.author} 
+            className="w-8 h-8 rounded-full border border-slate-200"
+          />
+          <span className="text-sm font-medium text-slate-700">{blog.author}</span>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
-
-export default BlogCard;

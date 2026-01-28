@@ -1,58 +1,52 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
-const Sidebar: React.FC = () => {
+const navItems = [
+  { label: 'Overview', icon: 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z', path: '/dashboard/overview' },
+  { label: 'My Blogs', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', path: '/dashboard/blogs' },
+  { label: 'Create New', icon: 'M12 4v16m8-8H4', path: '/dashboard/create' },
+  { label: 'Profile', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z', path: '/dashboard/profile' },
+];
+
+export const Sidebar: React.FC = () => {
+  const { sidebarOpen } = useSelector((state: RootState) => state.ui);
   const location = useLocation();
-  
-  const menuItems = [
-    { name: 'Overview', path: '/dashboard', icon: 'M4 6h16M4 12h16M4 18h7' },
-    { name: 'Manage Posts', path: '/dashboard/posts', icon: 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z' },
-    { name: 'Analytics', path: '/dashboard/analytics', icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z' },
-    { name: 'Write New', path: '/author', icon: 'M12 4v16m8-8H4' },
-  ];
 
   return (
-    <aside className="w-72 bg-white border-r border-gray-100 flex flex-col h-screen sticky top-0">
-      <div className="p-8">
-        <Link to="/" className="text-xl font-black text-indigo-600 tracking-tighter uppercase">
-          Modern<span className="text-gray-900">Blog</span>
-        </Link>
-      </div>
-      
-      <nav className="flex-grow px-4 space-y-1.5">
-        {menuItems.map((item) => {
-          const isActive = location.pathname === item.path;
-          return (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-all ${
-                isActive 
-                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-100' 
-                  : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
-              }`}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} />
-              </svg>
-              {item.name}
-            </Link>
-          );
-        })}
-      </nav>
-
-      <div className="p-6">
-        <div className="bg-gray-900 rounded-3xl p-6 text-white overflow-hidden relative">
-          <div className="absolute top-0 right-0 -mr-4 -mt-4 w-16 h-16 bg-white/5 rounded-full blur-xl"></div>
-          <p className="text-[10px] font-black text-white/40 uppercase tracking-widest mb-4">Enterprise Hub</p>
-          <p className="text-xs font-medium text-gray-400 mb-6 leading-relaxed">Collaborate with your team seamlessly.</p>
-          <button className="w-full py-3 bg-indigo-600 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-500 transition-colors">
-            Invite Team
-          </button>
+    <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-white border-r transform transition-transform duration-300 lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className="flex flex-col h-full pt-16 lg:pt-0">
+        <nav className="flex-1 p-4 space-y-1">
+          {navItems.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <Link
+                key={item.label}
+                to={item.path}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  isActive 
+                    ? 'bg-indigo-50 text-indigo-700' 
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                }`}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                </svg>
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="p-4 border-t border-slate-100">
+          <div className="p-4 rounded-xl bg-slate-50">
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Support</p>
+            <p className="text-xs text-slate-600 mb-3">Need help with your account?</p>
+            <button className="text-xs font-medium text-indigo-600 hover:text-indigo-700">View Help Center &rarr;</button>
+          </div>
         </div>
       </div>
     </aside>
   );
 };
-
-export default Sidebar;

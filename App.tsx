@@ -1,44 +1,44 @@
+
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store } from './store/store';
-import Layout from './components/Layout';
-import HomePage from './pages/HomePage';
-import BlogsPage from './pages/BlogsPage';
-import BlogDetail from './pages/BlogDetail';
-import AuthorPage from './pages/AuthorPage';
-import Dashboard from './pages/Dashboard';
-import DashboardOverview from './pages/DashboardOverview';
-import DashboardPosts from './pages/DashboardPosts';
-import DashboardAnalytics from './pages/DashboardAnalytics';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+import { MainLayout } from './layouts/MainLayout';
+import { DashboardLayout } from './layouts/DashboardLayout';
+import Home from './pages/Home';
+import Blogs from './pages/Blogs';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Overview from './pages/Dashboard/Overview';
+import MyBlogs from './pages/Dashboard/MyBlogs';
+import CreateBlog from './pages/Dashboard/CreateBlog';
+import Profile from './pages/Dashboard/Profile';
 
 const App: React.FC = () => {
   return (
-    <Provider store={store}>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/blogs" element={<BlogsPage />} />
-            <Route path="/blog/:id" element={<BlogDetail />} />
-            <Route path="/author" element={<AuthorPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            
-            {/* Nested Dashboard Routes */}
-            <Route path="/dashboard" element={<Dashboard />}>
-              <Route index element={<DashboardOverview />} />
-              <Route path="posts" element={<DashboardPosts />} />
-              <Route path="analytics" element={<DashboardAnalytics />} />
-            </Route>
+    <Router>
+      <Routes>
+        {/* Public Routes */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/blogs" element={<Blogs />} />
+        </Route>
 
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Layout>
-      </Router>
-    </Provider>
+        {/* Auth Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Dashboard Routes */}
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<Navigate to="/dashboard/overview" replace />} />
+          <Route path="overview" element={<Overview />} />
+          <Route path="blogs" element={<MyBlogs />} />
+          <Route path="create" element={<CreateBlog />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+
+        {/* Catch-all */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
   );
 };
 

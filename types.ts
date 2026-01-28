@@ -1,27 +1,40 @@
 
-export interface Blog {
-  id: string;
-  title: string;
-  content: string;
-  excerpt: string;
-  authorId: string;
-  authorName: string;
-  date: string;
-  category: string;
-  imageUrl: string;
-  featured?: boolean;
-}
-
-export interface Author {
-  id: string;
-  name: string;
-  avatar?: string;
-  bio?: string;
-}
-
 export interface User {
   id: string;
   name: string;
   email: string;
-  role?: 'admin' | 'user';
+  avatar?: string;
+  role: 'author' | 'admin';
+}
+
+export interface Blog {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  publishDate: string;
+  readTime: string;
+  category: string;
+  image: string;
+  status: 'published' | 'draft';
+  views: number;
+}
+
+export interface AuthState {
+  user: User | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+}
+
+export interface BlogState {
+  blogs: Blog[];
+  featuredBlogs: Blog[];
+  selectedBlog: Blog | null;
+  draft: Partial<Blog>;
+}
+
+export interface UIState {
+  sidebarOpen: boolean;
+  theme: 'light' | 'dark';
 }

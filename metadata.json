@@ -1,6 +1,5 @@
-
 {
-  "name": "ModernBlog - Optimized",
-  "description": "A refined blogging platform with Redux, public dashboard, and dedicated authentication flow.",
+  "name": "Inkwell - Modern Blogging Platform",
+  "description": "A clean, high-performance blogging frontend featuring a robust dashboard, state management with Redux Toolkit, and a responsive SaaS-inspired UI.",
   "requestFramePermissions": []
 }
