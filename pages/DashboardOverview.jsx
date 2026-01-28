@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+// dashboard overview
 const DashboardOverview = () => {
   const blogs = useSelector((state) => state.blogs.blogs);
   const { currentUser, isAuthenticated } = useSelector((state) => state.user);
