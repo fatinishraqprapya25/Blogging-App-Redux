@@ -1,10 +1,10 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/Sidebar.jsx';
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   return (
-    <div className="flex min-h-screen bg-gray-50 -mx-6 -my-10">
+    <div className="flex min-h-screen">
       <Sidebar />
       <main className="flex-grow p-12 overflow-y-auto">
         <div className="max-w-6xl mx-auto">

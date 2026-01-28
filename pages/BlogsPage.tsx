@@ -9,14 +9,12 @@ const CATEGORIES = ['All', 'Technology', 'Lifestyle', 'Design', 'Business', 'Hea
 
 const BlogsPage: React.FC = () => {
   const { blogs, searchQuery, selectedCategory } = useSelector((state: RootState) => state.blogs);
-  // dispatch
   const dispatch = useDispatch();
 
-  // filter blogs function
   const filteredBlogs = useMemo(() => {
     return blogs.filter(blog => {
-      const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.content.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                           blog.content.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = selectedCategory === 'All' || blog.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
@@ -53,10 +51,11 @@ const BlogsPage: React.FC = () => {
             <button
               key={cat}
               onClick={() => dispatch(setCategory(cat))}
-              className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${selectedCategory === cat
-                ? 'bg-indigo-600 text-white shadow-md'
-                : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-                }`}
+              className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
+                selectedCategory === cat 
+                  ? 'bg-indigo-600 text-white shadow-md' 
+                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+              }`}
             >
               {cat}
             </button>

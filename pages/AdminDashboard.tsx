@@ -1,10 +1,10 @@
+
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { deleteBlog } from '../store/slices';
 import { Link } from 'react-router-dom';
 
-// admin Dashboard Home
 const AdminDashboard: React.FC = () => {
   const blogs = useSelector((state: RootState) => state.blogs.blogs);
   const user = useSelector((state: RootState) => state.user.currentUser);
@@ -74,14 +74,14 @@ const AdminDashboard: React.FC = () => {
                     {blog.date}
                   </td>
                   <td className="px-6 py-4 text-right space-x-2">
-                    <Link
-                      to={`/blog/${blog.id}`}
+                    <Link 
+                      to={`/blog/${blog.id}`} 
                       className="inline-block p-2 text-gray-400 hover:text-indigo-600 transition-colors"
                       title="View"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                     </Link>
-                    <button
+                    <button 
                       onClick={() => dispatch(deleteBlog(blog.id))}
                       className="p-2 text-gray-400 hover:text-red-600 transition-colors"
                       title="Delete"
