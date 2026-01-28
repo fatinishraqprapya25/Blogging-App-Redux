@@ -9,9 +9,9 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Login Handler
   const handleLogin = (e) => {
     e.preventDefault();
-    // Simplified login logic
     dispatch(login({ id: 'user-1', name: email.split('@')[0], email }));
     navigate('/dashboard');
   };
