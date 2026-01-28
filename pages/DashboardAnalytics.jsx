@@ -1,5 +1,6 @@
 import React from 'react';
 
+// dAshboard Analitics
 const DashboardAnalytics = () => {
   return (
     <div className="animate-in">
@@ -15,11 +16,11 @@ const DashboardAnalytics = () => {
             <p className="text-sm font-medium text-gray-400">Peak performance across regions.</p>
           </div>
           <div className="flex-grow flex items-center justify-center">
-             <div className="relative w-48 h-48 rounded-full border-[20px] border-indigo-600 border-t-indigo-50 border-r-indigo-200">
-               <div className="absolute inset-0 flex items-center justify-center">
-                 <span className="text-2xl font-black text-indigo-600 tracking-tighter">74%</span>
-               </div>
-             </div>
+            <div className="relative w-48 h-48 rounded-full border-[20px] border-indigo-600 border-t-indigo-50 border-r-indigo-200">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-2xl font-black text-indigo-600 tracking-tighter">74%</span>
+              </div>
+            </div>
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
@@ -42,9 +43,9 @@ const DashboardAnalytics = () => {
           <div className="flex-grow flex items-end gap-3 pb-6">
             {[40, 60, 45, 90, 75, 85, 100].map((h, i) => (
               <div key={i} className="flex-grow bg-indigo-600 rounded-2xl relative group transition-all" style={{ height: `${h}%` }}>
-                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                   {h}K
-                 </div>
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                  {h}K
+                </div>
               </div>
             ))}
           </div>
