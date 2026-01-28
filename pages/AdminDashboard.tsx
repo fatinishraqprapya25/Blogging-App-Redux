@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { deleteBlog } from '../store/slices';
 import { Link } from 'react-router-dom';
 
-// Admin Dashboard Home
+// admin Dashboard Home
 const AdminDashboard: React.FC = () => {
   const blogs = useSelector((state: RootState) => state.blogs.blogs);
   const user = useSelector((state: RootState) => state.user.currentUser);
