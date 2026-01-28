@@ -6,7 +6,6 @@ import { addBlog } from '../store/slices';
 import { RootState } from '../store/store';
 
 const AuthorPage = () => {
-  // Use RootState to provide proper typing for user state
   const { currentUser, isAuthenticated } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
