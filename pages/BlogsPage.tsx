@@ -9,6 +9,7 @@ const CATEGORIES = ['All', 'Technology', 'Lifestyle', 'Design', 'Business', 'Hea
 
 const BlogsPage: React.FC = () => {
   const { blogs, searchQuery, selectedCategory } = useSelector((state: RootState) => state.blogs);
+  // dispatch
   const dispatch = useDispatch();
 
   // filter blogs function
