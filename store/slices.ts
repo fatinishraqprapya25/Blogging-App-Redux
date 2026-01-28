@@ -44,6 +44,7 @@ const initialAuthors = [
   { id: 'auth-2', name: 'Sarah Jenkins', avatar: 'https://i.pravatar.cc/150?u=auth-2', bio: 'Sustainability advocate and lifestyle blogger.' },
 ];
 
+// blog slice
 const blogSlice = createSlice({
   name: 'blogs',
   initialState: {
