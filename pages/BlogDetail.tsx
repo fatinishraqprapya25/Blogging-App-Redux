@@ -29,6 +29,7 @@ const BlogDetail: React.FC = () => {
           <span className="text-sm text-gray-400">{blog.date}</span>
         </div>
         <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+          {/* title */}
           {blog.title}
         </h1>
         <p className="text-xl text-gray-500 italic leading-relaxed">
