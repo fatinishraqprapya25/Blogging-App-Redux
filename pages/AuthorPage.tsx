@@ -47,6 +47,7 @@ const AuthorPage = () => {
       category: formData.category,
       imageUrl: `https://picsum.photos/seed/${Date.now()}/1200/800`,
     };
+    // dispatch the blog
     dispatch(addBlog(newBlog));
     navigate('/dashboard');
   };
@@ -60,8 +61,8 @@ const AuthorPage = () => {
 
       <form onSubmit={handleSubmit} className="space-y-12 pb-20">
         <div className="space-y-4">
-          <input 
-            type="text" 
+          <input
+            type="text"
             required
             value={formData.title}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
@@ -74,7 +75,7 @@ const AuthorPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div className="space-y-2">
             <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Story Category</label>
-            <select 
+            <select
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
               className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-indigo-500 outline-none font-bold"
@@ -88,8 +89,8 @@ const AuthorPage = () => {
           </div>
           <div className="space-y-2">
             <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Hook / Excerpt</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               required
               value={formData.excerpt}
               onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
@@ -100,8 +101,8 @@ const AuthorPage = () => {
         </div>
 
         <div className="space-y-2">
-           <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Full Content</label>
-          <textarea 
+          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Full Content</label>
+          <textarea
             required
             rows={15}
             value={formData.content}
@@ -115,8 +116,8 @@ const AuthorPage = () => {
           <button type="button" onClick={() => navigate(-1)} className="text-sm font-black text-gray-400 hover:text-gray-900 transition-colors">
             Discard Draft
           </button>
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="bg-indigo-600 text-white px-12 py-5 rounded-2xl font-black hover:bg-indigo-700 transition-all shadow-2xl shadow-indigo-100"
           >
             Publish Story Now
